@@ -1,0 +1,174 @@
+/* Body and main layout */
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+.main {
+  margin-top: 100px;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.inputWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.textBox {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 300px;
+}
+
+.textBox input {
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s ease;
+}
+
+.textBox input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.textBox select {
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  color: #aaa;
+  transition: border-color 0.3sease;
+}
+
+.textBox select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.textBox button {
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.textBox button:hover {
+  background-color: #0056b3;
+}
+
+/* Increase height for 상세내용 input */
+.textBox #content {
+  height: 120px;
+  resize: vertical;
+}
+
+/* Image preview container */
+#previewContainer {
+  width: 250px;
+  height: 300px;
+  border: 2px dashed #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+#previewContainer:hover {
+  border-color: #007bff;
+}
+
+#previewImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+#placeholder {
+  color: #aaa;
+  font-size: 14px;
+}
+
+/* Table styling */
+.tableWrap {
+  margin-top: 50px;
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th,
+td {
+  padding: 15px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+th {
+  background-color: #007bff;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* td 이미지크기설정 */
+.tableImg {
+  width: 100px;
+  height: 100px;
+}
+
+button {
+  padding: 6px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .inputWrap {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .textBox {
+    width: 100%;
+  }
+
+  #previewContainer {
+    width: 120px;
+    height: 120px;
+  }
+}

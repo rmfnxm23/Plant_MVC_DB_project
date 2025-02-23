@@ -1,0 +1,110 @@
+header {
+  background: linear-gradient(135deg, #bbbdbc 30%, white 70%);
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Main Section */
+.main {
+  padding: 20px;
+}
+
+/* Banner Styling */
+.banner {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.bannerImg {
+  width: 100%;
+  height: auto;
+}
+
+/* Category Buttons */
+.mainCategory {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.mainCategory button {
+  background-color: #f0f0f0;
+  padding: 10px 20px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.mainCategory button:hover {
+  background-color: #ddd;
+}
+
+/* Product Cards */
+.mainItems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.productCard {
+  position: relative;
+  background-color: white;
+  width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+.productCard:hover {
+  transform: translateY(-10px);
+}
+
+.cardContent {
+  padding: 20px;
+}
+
+.img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.productInfo {
+  margin-top: 10px;
+}
+
+.productId {
+  font-size: 14px;
+  color: #888;
+}
+
+.productName {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Arrow in Product Card */
+.arrow {
+  position: absolute;
+  right: 10px;
+  bottom: 30px;
+  transform: translateY(50%);
+  background-color: transparent;
+  padding: 5px;
+  font-size: 18px;
+  color: #69925a;
+  transition: opacity 0.3s, background-color 0.3s;
+}
+
+.productCard:hover .arrow {
+  opacity: 1;
+  background-color: #69925a;
+  color: white;
+}

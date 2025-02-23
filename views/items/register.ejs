@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>project</title>
+    <link rel="stylesheet" href="/public/css/register.css" />
+    <link rel="stylesheet" href="/public/css/header.css" />
+  </head>
+
+  <body>
+    <header>
+      <div class="header_left">
+        <div onclick="move_url('main')">
+          <img src="/public/img/logo_icon.png" />
+        </div>
+      </div>
+      <div class="header_right">
+        <div class="login">
+          <img
+            src="/public/img/login_icon.png"
+            alt="login"
+            onclick="alert_show()"
+          />
+        </div>
+        <div class="cart_icon" onclick="move_url('cart')">
+          <img class="cart_img" src="/public/img/cart_icon.png" alt="cart" />
+          <!-- <div class="cart_count">0</div> -->
+        </div>
+      </div>
+    </header>
+    <div class="main">
+      <div>
+        <div class="inputWrap">
+          <div class="imageBox">
+            <!-- 파일 입력 필드는 숨기고, 상자를 클릭하면 파일 선택 -->
+            <input
+              id="url"
+              type="file"
+              onchange="fileInputField(event);"
+              style="display: none"
+            />
+            <!-- 미리보기 이미지 상자 클릭 시 파일 입력 트리거 -->
+            <div id="previewContainer" onclick="triggerFileInput();">
+              <img
+                id="previewImage"
+                src=""
+                alt="미리보기 이미지"
+                style="
+                  display: none;
+                  width: 250px;
+                  height: 300px;
+                  object-fit: cover;
+                "
+              />
+              <span id="placeholder" style="display: block">이미지 선택</span>
+            </div>
+          </div>
+          <div class="textBox">
+            <input id="userId" type="number" placeholder="유저아이디" />
+            <input id="name" type="text" placeholder="이름" />
+            <input id="content" type="text" placeholder="상세내용" />
+            <select id="category" name="category">
+              <% for (let i = 0; i < category.length; i++) { %>
+              <option value="<%= category[i].id %>">
+                <%= category[i].categoryName %>
+              </option>
+              <% } %>
+            </select>
+            <button onclick="createData()">등록</button>
+          </div>
+        </div>
+      </div>
+      <div class="tableWrap">
+        <table>
+          <thead>
+            <tr>
+              <th>이미지</th>
+              <th>카테고리</th>
+              <th>유저아이디</th>
+              <th>이름</th>
+              <th>상세내용</th>
+              <th>수정</th>
+              <th>삭제</th>
+            </tr>
+          </thead>
+          <tbody class="inputData">
+            <% for (let i = 0; i < items.length; i++ ) { %>
+            <tr id="tr_<%= items[i].id %>">
+              <td>
+                <img class="tableImg" src="<%= items[i].url %>" alt="이미지" />
+              </td>
+              <td><%= items[i].categoryName %></td>
+              <td><%= items[i].userid %></td>
+              <td>
+                <a href="/items/itemOne/<%= items[i].id %>"
+                  ><%= items[i].name %></a
+                >
+              </td>
+              <td><%= items[i].content %></td>
+              <td>
+                <button onclick="updatePage('<%= items[i].id %>')">수정</button>
+              </td>
+              <td>
+                <button onclick="deleteItem('<%= items[i].id %>')">삭제</button>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+
+  <script src="/public/js/register.js"></script>
+</html>

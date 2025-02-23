@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/itemWrite.css" />
+    <link rel="stylesheet" href="/public/css/header.css" />
+  </head>
+  <body>
+    <h1>수정 페이지</h1>
+    <form name="updateData">
+      <div class="imageBox">
+        <!-- 파일 입력 필드는 숨기고, 상자를 클릭하면 파일 선택 -->
+        <input
+          id="url"
+          name="url"
+          type="file"
+          onchange="fileInputField(event);"
+          style="display: none"
+        />
+        <!-- 미리보기 이미지 상자 클릭 시 파일 입력 트리거 -->
+        <div id="previewContainer" onclick="triggerFileInput();">
+          <img
+            id="previewImage"
+            src="<%= itemOne[0].url %>"
+            alt="미리보기 이미지"
+            style="width: 250px; height: 300px; object-fit: cover"
+          />
+        </div>
+      </div>
+      <div>
+        UserID
+        <input name="userId" value="<%= itemOne[0].userid %>" />
+      </div>
+      <div>
+        이름
+        <input name="name" value="<%= itemOne[0].name %>" />
+      </div>
+      <div>
+        상세내용
+        <input name="content" value="<%= itemOne[0].content %>" />
+      </div>
+      <div>
+        카테고리
+        <select id="category" name="category">
+          <% for (let i = 0; i < category.length; i++) { %>
+            <option value="<%= category[i].id %>" 
+              <% if (category[i].id == itemOne[0].category) { %> 
+                selected 
+              <% } %>
+            >
+              <%= category[i].categoryName %>
+            </option>
+          <% } %>
+        </select>
+      </div>
+      <button onclick="updateForm('<%= itemOne[0].id %>', event)">수정</button>
+    </form>
+
+    <a href="/items/register">뒤로 가기</a>
+  </body>
+  <script>
+
+  </script>
+</html>

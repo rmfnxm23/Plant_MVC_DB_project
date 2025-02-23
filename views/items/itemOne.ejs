@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/header.css" />
+  </head>
+
+  <body>
+    <header>
+      <div class="header_left">
+        <div onclick="move_url('main')">
+          <img src="/public/img/logo_icon.png" />
+        </div>
+      </div>
+      <div class="header_right">
+        <div class="login">
+          <img
+            src="/public/img/login_icon.png"
+            alt="login"
+            onclick="alert_show()"
+          />
+        </div>
+        <div class="cart_icon" onclick="alert_show()">
+          <img class="cart_img" src="/public/img/cart_icon.png" alt="cart" />
+          <!-- <div class="cart_count">0</div> -->
+        </div>
+      </div>
+    </header>
+    <div class="main">
+      <% itemOne.forEach((item) => { %>
+      <img src="<%= item.url %>" />
+      <h3>아이디 : <%= item.userid %></h3>
+      <h3>이름 : <%= item.name %></h3>
+      <h3>내용 : <%= item.content %></h3>
+      <% }) %>
+
+      <a href="/items">뒤로가기</a>
+    </div>
+  </body>
+
+  <script>
+    const move_url = (type) => {
+      if (type === "main") {
+        window.location.href = "http://localhost:3000/items";
+      }
+    };
+
+    const alert_show = () => {
+      alert("준비중입니다");
+    };
+  </script>
+</html>

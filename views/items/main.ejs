@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/header.css" />
+    <link rel="stylesheet" href="/public/css/main.css" />
+  </head>
+
+  <body>
+    <header>
+      <div class="header_left">
+        <div onclick="move_url('main')">
+          <img src="/public/img/logo_icon.png" />
+        </div>
+      </div>
+      <div class="header_right">
+        <div class="login">
+          <img
+            src="/public/img/login_icon.png"
+            alt="login"
+            onclick="alert_show()"
+          />
+        </div>
+        <div class="cart_icon" onclick="move_url('cart')">
+          <img class="cart_img" src="/public/img/cart_icon.png" alt="cart" />
+          <!-- <div class="cart_count">0</div> -->
+        </div>
+      </div>
+    </header>
+
+    <!-- 배경이미지가 들어갈 배너 영역 -->
+    <div class="banner">
+      <img src="/public/img/banner.avif" alt="Banner" class="bannerImg" />
+    </div>
+
+    <div class="main">
+      <!-- <div class="mainBox">
+        <% for (let i = 0; i < items.length; i++ ) { %>
+        <div class="productCard">
+          <a href="/items/itemOne/<%= items[i].id %>">
+            <img class="img" src="<%= items[i].url %>" alt="card_image" />
+            <div class="productInfo">
+              <div class="productId"><%= items[i].userid %></div>
+              <div class="productName"><%= items[i].name %></div>
+            </div>
+          </a>
+        </div>
+        <% } %>
+      </div> -->
+      <div class="mainBox">
+        <div class="mainCategory">
+          <% for (let i = 0; i < category.length; i++) { %>
+          <button
+            id="<%= category[i].id %>"
+            onclick="categoryItem('<%= category[i].id %>')"
+          >
+            <%= category[i].categoryName %>
+          </button>
+          <% } %>
+        </div>
+
+        <div class="mainItems">
+          <% for (let i = 0; i < items.length; i++) { %>
+          <div class="productCard">
+            <a href="/items/itemOne/<%= items[i].id %>">
+              <div class="cardContent">
+                <img class="img" src="<%= items[i].url %>" alt="card_image" />
+                <div class="productInfo">
+                  <div class="productId"><%= items[i].userid %></div>
+                  <div class="productName"><%= items[i].name %></div>
+                </div>
+              </div>
+              <div class="arrow">
+                <span>&rarr;</span>
+              </div>
+            </a>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    function categoryItem(categoryId) {
+      // 버튼 클릭 시, 해당 카테고리 ID를 서버로 전송
+      axios({
+        method: "get",
+      })
+        .get(`/items/filter/${categoryId}`)
+        .then((response) => {
+          // 서버에서 반환한 아이템 목록을 화면에 업데이트
+          updateProductCards(response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching filtered items:", error);
+          alert("error");
+        });
+    }
+  </script>
+</html>
