@@ -1,17 +1,36 @@
-header {
-  background: linear-gradient(135deg, #bbbdbc 30%, white 70%);
-}
-
 a {
   text-decoration: none;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.gifContainer {
+  width: 100%;
+  overflow: hidden; /* 이미지가 부모를 넘어가지 않도록 */
+}
+
+.gifContainer img {
+  width: 100%; /* 부모 요소의 너비에 맞춰서 이미지 크기 조정 */
+  height: auto; /* 비율에 맞게 높이 자동으로 설정 */
+  display: block; /* 여백을 제거하기 위해 block으로 설정 */
 }
 
 /* Main Section */
 .main {
   padding: 20px;
+  margin-top: 50px;
+  display: flex; /* 중앙 정렬을 위한 flexbox */
+  align-items: center; /* 세로 중앙 정렬 */
+  flex-direction: column; /* 내용이 세로로 쌓이도록 */
+  min-height: 100vh; /* 최소 높이를 화면 전체로 설정 */
+  box-sizing: border-box; /* padding이 사이즈에 영향을 주지 않도록 */
 }
 
-/* Banner Styling */
+/* 배너 영역 */
 .banner {
   text-align: center;
   margin-bottom: 30px;
@@ -22,7 +41,7 @@ a {
   height: auto;
 }
 
-/* Category Buttons */
+/* 카테고리 버튼 영역 */
 .mainCategory {
   display: flex;
   gap: 20px;
@@ -32,30 +51,92 @@ a {
 }
 
 .mainCategory button {
-  background-color: #f0f0f0;
-  padding: 10px 20px;
+  background: linear-gradient(135deg, #6e7f90, #a1b7c5);
+  color: white;
+  padding: 12px 25px;
   border: none;
   font-size: 16px;
+  font-weight: 600;
+  border-radius: 25px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 기본적으로 버튼을 표시 */
+.mainCategory .categoryButton {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: #f1f1f1;
+  border: none;
+  cursor: pointer;
+}
+
+/* 768px 이하에서 버튼을 숨기고 드롭다운을 표시 */
+@media (max-width: 768px) {
+  .mainCategory .categoryButton {
+    display: none; /* 버튼 숨기기 */
+  }
+
+  #categorySelect {
+    display: block; /* 드롭다운 메뉴 보이기 */
+    padding: 10px;
+    margin: 5px;
+    width: 100%;
+  }
 }
 
 .mainCategory button:hover {
-  background-color: #ddd;
+  background: linear-gradient(135deg, #3e4a57, #6e7f90);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Product Cards */
+/* 제품 카드 영역 */
 .mainItems {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 50px 50px;
+  padding: 0 100px;
+  justify-items: center;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1200px) {
+  .mainItems {
+    grid-template-columns: repeat(
+      4,
+      1fr
+    ); /* 화면 크기에 따라 카드 열 수 변경 */
+    padding: 0 50px;
+  }
+}
+
+@media (max-width: 900px) {
+  .mainItems {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .mainItems {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .mainItems {
+    grid-template-columns: 1fr; /* 화면 크기가 작으면 카드 한 열로 배치 */
+    padding: 0 10px;
+  }
 }
 
 .productCard {
   position: relative;
   background-color: white;
-  width: 200px;
+  width: 220px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
   overflow: hidden;
@@ -71,7 +152,7 @@ a {
 
 .img {
   width: 100%;
-  height: auto;
+  height: 200px;
   display: block;
 }
 
@@ -90,7 +171,7 @@ a {
   color: #333;
 }
 
-/* Arrow in Product Card */
+/* 제품 카드 화살표 */
 .arrow {
   position: absolute;
   right: 10px;
@@ -107,4 +188,157 @@ a {
   opacity: 1;
   background-color: #69925a;
   color: white;
+}
+
+.conjugation {
+  width: 100%;
+  overflow: hidden; /* 이미지가 화면 밖으로 나가지 않도록 숨김 */
+  margin: 30px 0;
+}
+
+.flowTitle {
+  padding: 0 100px;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .flowTitle {
+    max-width: 1308px;
+    padding-left: 54px;
+    padding-right: 54px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .flowTitle {
+    /* max-width: 1308px; */
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.imageGroup {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.imageItems {
+  display: flex;
+  animation: slideLeft 20s linear infinite; /* 40초 동안 이미지들이 왼쪽으로 이동 */
+}
+
+.imageItem {
+  margin-right: 10px; /* 이미지 간격 */
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(0); /* 첫 번째 그룹의 이미지를 시작 위치로 설정 */
+  }
+
+  /* 50% {
+    transform: translateX(-100%); 
+  } */
+  100% {
+    transform: translateX(
+      -200%
+    ); /* 두 번째 그룹이 끝날 때 첫 번째 그룹으로 돌아옴 */
+  }
+}
+
+.imageItem img {
+  width: 330px;
+  height: 330px;
+}
+
+/* Responsive Design for Tablets and Mobile */
+
+/* When screen width is 1024px or less (Tablets and smaller screens) */
+@media screen and (max-width: 1024px) {
+  .mainItems {
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+    gap: 30px 30px;
+    padding: 0 50px;
+  }
+
+  .productCard {
+    width: 100%; /* Make the product cards take up the full width of the container */
+  }
+
+  .mainCategory button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+
+/* When screen width is 768px or less (Portrait Tablets and Mobile) */
+@media screen and (max-width: 768px) {
+  .mainItems {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+    gap: 20px 20px;
+    padding: 0 30px;
+  }
+
+  .mainCategory {
+    flex-direction: column; /* Stack the buttons vertically */
+    gap: 10px; /* Smaller gap between category buttons */
+  }
+
+  .mainCategory button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .productCard {
+    width: 100%; /* Make product cards take up the full width */
+  }
+
+  .img {
+    height: 150px; /* Adjust image height for smaller screens */
+  }
+
+  .productId,
+  .productName {
+    font-size: 14px; /* Reduce font size for smaller screens */
+  }
+
+  .arrow {
+    font-size: 16px; /* Smaller arrow for mobile */
+  }
+}
+
+/* When screen width is 480px or less (Mobile) */
+@media screen and (max-width: 480px) {
+  .mainItems {
+    grid-template-columns: 1fr; /* 1 card per row */
+    gap: 15px;
+    padding: 0 20px;
+  }
+
+  .mainCategory button {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .productCard {
+    width: 100%;
+  }
+
+  .img {
+    height: 120px; /* Adjust image height for very small screens */
+  }
+
+  .productId,
+  .productName {
+    font-size: 12px;
+  }
+
+  .arrow {
+    font-size: 14px;
+  }
 }

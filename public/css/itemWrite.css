@@ -5,12 +5,9 @@ body {
   padding: 0;
 }
 
-h1 {
-  text-align: center;
-  color: #333;
-  padding-top: 20px;
+.main {
+  margin-top: 100px;
 }
-
 form {
   width: 50%;
   margin: 20px auto;
@@ -71,7 +68,7 @@ select {
 }
 
 select:focus {
-  border-color: #4caf50;
+  border-color: #decef6;
   outline: none;
 }
 
@@ -79,7 +76,7 @@ button {
   width: 100%;
   padding: 12px;
   font-size: 16px;
-  background-color: #4caf50;
+  background-color: #decef6;
   color: white;
   border: none;
   border-radius: 8px;
@@ -88,7 +85,7 @@ button {
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #cbb0f3;
 }
 
 a {
@@ -96,7 +93,7 @@ a {
   text-align: center;
   margin-top: 20px;
   font-size: 16px;
-  color: #4caf50;
+  color: #decef6;
   text-decoration: none;
 }
 

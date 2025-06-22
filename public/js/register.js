@@ -1,3 +1,13 @@
+const move_url = (type) => {
+  if (type === "main") {
+    window.location.href = "http://localhost:3000/items";
+  }
+};
+
+const alert_show = () => {
+  alert("준비중입니다");
+};
+
 // int imageBox
 // 파일 입력을 트리거하는 함수
 const triggerFileInput = () => {
@@ -28,7 +38,11 @@ const createData = () => {
   const file = fileInput.files[0]; // 선택된 파일
   const userId = document.getElementById("userId").value;
   const names = document.getElementById("name").value;
-  const contents = document.getElementById("content").value;
+
+  // const contents = document.getElementById("content").value;
+  // Toast UI Editor에서 content 값을 가져옴
+  const contents = editor.getMarkdown();
+  console.log("contents : ", contents);
 
   const category = document.getElementById("category").value;
 

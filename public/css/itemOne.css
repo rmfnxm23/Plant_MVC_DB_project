@@ -1,0 +1,101 @@
+/* 링크 텍스트 꾸미기 */
+a {
+  text-decoration: none;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: auto;
+}
+
+/* Main Section */
+.main {
+  margin: 0 auto;
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 30px; /* Added left and right padding */
+  max-width: 1280px;
+  width: 100%; /* Make sure it takes up full width */
+  box-sizing: border-box;
+}
+
+.mainWrap {
+  display: flex; /* Make it a flex container */
+  width: 100%; /* Ensure it takes the full width of its parent */
+  height: 80vh;
+}
+
+.leftImgBox,
+.rightContentBox {
+  width: 50%; /* Ensure both boxes take 50% each */
+}
+
+.leftImgBox {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align children to the top */
+  box-sizing: border-box;
+  margin: 10px;
+}
+
+.imgWrap {
+  box-sizing: border-box;
+}
+
+.img {
+  width: 450px; /* Make sure it takes full width */
+  height: 500px; /* Maintain aspect ratio */
+  background-color: aquamarine;
+}
+
+.rightContentBox {
+  padding: 1rem;
+  font-family: "Nanum Gothic", serif;
+}
+.content {
+  font-family: "Noto Sans KR", serif;
+  font-size: 20px;
+}
+
+.mainPage {
+  color: #69925a;
+  font-weight: 900;
+  font-style: italic;
+}
+.mainPage2 {
+  background-color: #69925a;
+  color: white;
+  font-weight: 900;
+  font-style: italic;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* 반응형 스타일: 800px 이하일 때 */
+@media (max-width: 1000px) {
+  .mainWrap {
+    flex-direction: column; /* 세로 방향으로 레이아웃 변경 */
+    height: auto; /* 세로 레이아웃에서는 높이를 자동으로 설정 */
+  }
+
+  .leftImgBox,
+  .rightContentBox {
+    width: 100%; /* 각 박스를 100%로 설정하여 세로로 쌓이도록 함 */
+  }
+
+  .rightContentBox {
+    padding-left: 2rem; /* 왼쪽 패딩을 줄여줌 */
+    padding-right: 2rem; /* 오른쪽 패딩 추가 */
+    box-sizing: border-box;
+  }
+
+  .img {
+    width: 100%; /* 이미지가 100% 너비를 차지하도록 설정 */
+    max-width: 100%; /* 최대 너비를 부모 컨테이너에 맞추기 */
+    height: auto;
+  }
+}

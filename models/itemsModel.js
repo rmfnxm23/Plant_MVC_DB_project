@@ -40,6 +40,15 @@ const categoryAll = async () => {
   return rows;
 };
 
+// category filtering해서 아이템 나타내기
+const getItemsByCategory = async (categoryId) => {
+  const query =
+    "SELECT I.*, C.categoryName FROM items I JOIN category C ON I.category = C.id WHERE C.id = ?";
+  const [rows] = await pool.query(query, [categoryId]);
+  // console.log("123", rows);
+  return rows;
+};
+
 // 등록하기
 const postData = async (data) => {
   try {
@@ -159,4 +168,5 @@ module.exports = {
   updateRow,
   userIdOne,
   categoryAll,
+  getItemsByCategory,
 };

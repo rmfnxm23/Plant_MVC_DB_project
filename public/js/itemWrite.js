@@ -10,7 +10,11 @@ const updateForm = (id, event) => {
   data.append("id", id);
   data.append("userid", form["userId"].value);
   data.append("name", form["name"].value);
-  data.append("content", form["content"].value);
+
+  // Toast UI Editor에서 content 값을 가져옴
+  const contents = editor.getMarkdown();
+  data.append("content", contents);
+
   data.append("category", form["category"].value);
 
   const file = form["url"].files[0];
@@ -35,9 +39,15 @@ const updateForm = (id, event) => {
   })
     .then((res) => {
       console.log(res, "dddd");
-      alert("수정 성공");
-      window.location.reload();
-      // window.location.href = "/items/register"; //수정완료 시 아이템 등록페이지로 자동 이동
+      if (res.status === 200) {
+        alert("수정 성공");
+        // window.location.reload();
+        window.location.href = "/items/register"; //수정완료 시 아이템 등록페이지로 자동 이동
+      } else if (res.status === 201) {
+        alert("유저ID 중복");
+      } else {
+        alert("오류");
+      }
     })
     .catch((e) => {
       console.log(e);

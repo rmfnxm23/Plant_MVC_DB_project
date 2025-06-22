@@ -1,50 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- axios cdn -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="/public/css/itemWrite.css" />
     <link rel="stylesheet" href="/public/css/header.css" />
+    <!-- Editor's Style -->
+    <link
+      rel="stylesheet"
+      href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"
+    />
   </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&display=swap");
+  </style>
   <body>
-    <h1>수정 페이지</h1>
-    <form name="updateData">
-      <div class="imageBox">
-        <!-- 파일 입력 필드는 숨기고, 상자를 클릭하면 파일 선택 -->
-        <input
-          id="url"
-          name="url"
-          type="file"
-          onchange="fileInputField(event);"
-          style="display: none"
-        />
-        <!-- 미리보기 이미지 상자 클릭 시 파일 입력 트리거 -->
-        <div id="previewContainer" onclick="triggerFileInput();">
+    <header>
+      <div class="header_left">
+        <div onclick="move_url('main')">plantplan</div>
+      </div>
+      <div class="header_right">
+        <div class="login">
           <img
-            id="previewImage"
-            src="<%= itemOne[0].url %>"
-            alt="미리보기 이미지"
-            style="width: 250px; height: 300px; object-fit: cover"
+            src="/public/img/login_icon.png"
+            alt="login"
+            onclick="alert_show()"
           />
         </div>
+        <div class="cart_icon" onclick="alert_show()">
+          <img class="cart_img" src="/public/img/cart_icon.png" alt="cart" />
+          <!-- <div class="cart_count">0</div> -->
+        </div>
       </div>
-      <div>
-        UserID
-        <input name="userId" value="<%= itemOne[0].userid %>" />
-      </div>
-      <div>
-        이름
-        <input name="name" value="<%= itemOne[0].name %>" />
-      </div>
-      <div>
-        상세내용
-        <input name="content" value="<%= itemOne[0].content %>" />
-      </div>
-      <div>
-        카테고리
-        <select id="category" name="category">
+    </header>
+
+    <div class="main">
+      <form name="updateData">
+        <div class="imageBox">
+          <!-- 파일 입력 필드는 숨기고, 상자를 클릭하면 파일 선택 -->
+          <input
+            id="url"
+            name="url"
+            type="file"
+            onchange="fileInputField(event);"
+            style="display: none"
+          />
+          <!-- 미리보기 이미지 상자 클릭 시 파일 입력 트리거 -->
+          <div id="previewContainer" onclick="triggerFileInput();">
+            <img
+              id="previewImage"
+              src="<%= itemOne[0].url %>"
+              alt="미리보기 이미지"
+              style="width: 250px; height: 300px; object-fit: cover"
+            />
+          </div>
+        </div>
+        <div>
+          UserID
+          <input name="userId" value="<%= itemOne[0].userid %>" />
+        </div>
+        <div>
+          이름
+          <input name="name" value="<%= itemOne[0].name %>" />
+        </div>
+        <div>
+          상세내용
+          <!-- <input name="content" value="<%= itemOne[0].content %>" /> -->
+          <div id="content"></div>
+        </div>
+        <div>
+          카테고리
+          <!-- prettier 안 먹음 -->
+          <!-- <select id="category" name="category">
           <% for (let i = 0; i < category.length; i++) { %>
             <option value="<%= category[i].id %>" 
               <% if (category[i].id == itemOne[0].category) { %> 
@@ -54,14 +84,39 @@
               <%= category[i].categoryName %>
             </option>
           <% } %>
-        </select>
-      </div>
-      <button onclick="updateForm('<%= itemOne[0].id %>', event)">수정</button>
-    </form>
+        </select> -->
+          <!-- else 작성을 함 -->
+          <select id="category" name="category">
+            <% for (let i = 0; i < category.length; i++) { %> <% if
+            (category[i].id === itemOne[0].category) { %>
+            <option value="<%= category[i].id %>" selected>
+              <%= category[i].categoryName %>
+            </option>
+            <% } else { %>
+            <option value="<%= category[i].id %>">
+              <%= category[i].categoryName %>
+            </option>
+
+            <% } %> <% } %>
+          </select>
+        </div>
+        <button onclick="updateForm('<%= itemOne[0].id %>', event)">
+          수정
+        </button>
+      </form>
+    </div>
 
     <a href="/items/register">뒤로 가기</a>
   </body>
+  <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
   <script>
-
+    const editor = new toastui.Editor({
+      el: document.querySelector("#content"), // 에디터를 적용할 요소 (컨테이너)
+      height: "300px", // 에디터 영역의 높이 값 (OOOpx || auto)
+      initialEditType: "markdown", // 최초로 보여줄 에디터 타입 (markdown || wysiwyg)
+      initialValue: "<%= itemOne[0].content %>", // 내용의 초기 값으로, 반드시 마크다운 문자열 형태여야 함
+      previewStyle: "vertical", // 마크다운 프리뷰 스타일 (tab || vertical)
+    });
   </script>
+  <script src="/public/js/itemWrite.js"></script>
 </html>

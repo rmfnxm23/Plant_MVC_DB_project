@@ -5,17 +5,17 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>plantplan</title>
     <link rel="stylesheet" href="/public/css/header.css" />
     <link rel="stylesheet" href="/public/css/main.css" />
   </head>
-
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&display=swap");
+  </style>
   <body>
     <header>
-      <div class="header_left">
-        <div onclick="move_url('main')">
-          <img src="/public/img/logo_icon.png" />
-        </div>
+      <div class="header">
+        <div onclick="move_url('main')">plantplan</div>
       </div>
       <div class="header_right">
         <div class="login">
@@ -31,13 +31,12 @@
         </div>
       </div>
     </header>
-
-    <!-- 배경이미지가 들어갈 배너 영역 -->
-    <div class="banner">
-      <img src="/public/img/banner.avif" alt="Banner" class="bannerImg" />
+    <div class="gifContainer">
+      <img src="/public/img/Succulents.gif" alt="GIF" />
     </div>
 
     <div class="main">
+      <!-- 카테고리 추가 전 -->
       <!-- <div class="mainBox">
         <% for (let i = 0; i < items.length; i++ ) { %>
         <div class="productCard">
@@ -51,6 +50,8 @@
         </div>
         <% } %>
       </div> -->
+
+      <!-- 카테고리 추가 후 -->
       <div class="mainBox">
         <div class="mainCategory">
           <% for (let i = 0; i < category.length; i++) { %>
@@ -65,7 +66,7 @@
 
         <div class="mainItems">
           <% for (let i = 0; i < items.length; i++) { %>
-          <div class="productCard">
+          <div class="productCard" data-category="<%= items[i].category %>">
             <a href="/items/itemOne/<%= items[i].id %>">
               <div class="cardContent">
                 <img class="img" src="<%= items[i].url %>" alt="card_image" />
@@ -82,24 +83,123 @@
           <% } %>
         </div>
       </div>
+      <div class="pagination"></div>
+      <div class="conjugation">
+        <div class="flowTitle">
+          <h4 class="imgTitle">
+            <span class="sub">Plantplan : Flower, Simply</span>
+            <p class="title">플랜트플랜 아카이브</p>
+          </h4>
+        </div>
+        <div class="imageGroup">
+          <div class="imageItems">
+            <div class="imageItem">
+              <img src="/public/img/image1.png" alt="image" />
+            </div>
+            <div class="imageItem">
+              <img src="/public/img/image2.jpg" alt="image" />
+            </div>
+            <div class="imageItem">
+              <img src="/public/img/image3.jpg" alt="image" />
+            </div>
+            <div class="imageItem">
+              <img src="/public/img/image4.jpg" alt="image" />
+            </div>
+            <div class="imageItem">
+              <img src="/public/img/image5.png" alt="image" />
+            </div>
+            <div class="imageItem">
+              <img src="/public/img/image6.jpg" alt="image" />
+            </div>
+            <div class="imageItem">
+              <img src="/public/img/image7.jpg" alt="image" />
+            </div>
+            <div class="imageItem">
+              <img src="/public/img/image8.jpg" alt="image" />
+            </div>
+            <div class="imageItem">
+              <img src="/public/img/image9.jpg" alt="image" />
+            </div>
+
+            <div class="imageItem">
+              <img src="/public/img/image1.png" alt="image" />
+            </div>
+            <div class="imageItem">
+              <img src="/public/img/image2.jpg" alt="image" />
+            </div>
+            <div class="imageItem">
+              <img src="/public/img/image3.jpg" alt="image" />
+            </div>
+            <div class="imageItem">
+              <img src="/public/img/image4.jpg" alt="image" />
+            </div>
+            <div class="imageItem">
+              <img src="/public/img/image5.png" alt="image" />
+            </div>
+            <div class="imageItem">
+              <img src="/public/img/image6.jpg" alt="image" />
+            </div>
+            <div class="imageItem">
+              <img src="/public/img/image7.jpg" alt="image" />
+            </div>
+            <div class="imageItem">
+              <img src="/public/img/image8.jpg" alt="image" />
+            </div>
+            <div class="imageItem">
+              <img src="/public/img/image9.jpg" alt="image" />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <footer>
+      <div class="footer">
+        <div class="footerWrap">
+          <div id="logo" onclick="move_url('main')">plantplan</div>
+        </div>
+        <div class="footer_info">
+          <div>대표 박소현</div>
+          <div>주소 서울특별시 마포구 숭문 4길 6</div>
+          <div>사업자 등록번호 000-00-00000</div>
+          <br />
+          <div>Copyright ⓒ 2025 PLANTPLAN All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
   </body>
 
+  <script src="/public/js/main.js"></script>
   <script>
-    function categoryItem(categoryId) {
-      // 버튼 클릭 시, 해당 카테고리 ID를 서버로 전송
-      axios({
-        method: "get",
-      })
-        .get(`/items/filter/${categoryId}`)
-        .then((response) => {
-          // 서버에서 반환한 아이템 목록을 화면에 업데이트
-          updateProductCards(response.data);
-        })
-        .catch((error) => {
-          console.error("Error fetching filtered items:", error);
-          alert("error");
-        });
-    }
+    // 스크롤 이벤트를 감지하여 header의 배경색을 변경하는 함수
+    window.addEventListener("scroll", function () {
+      const header = document.querySelector("header");
+
+      if (window.scrollY > 50) {
+        // 스크롤이 50px 이상일 때
+        header.classList.add("scrolled"); // 'scrolled' 클래스 추가
+      } else {
+        header.classList.remove("scrolled"); // 스크롤이 50px 이하일 때 클래스 제거
+      }
+    });
+
+    window.onload = function () {
+      const imageItems = document.querySelector(".imageItems");
+      const images = document.querySelectorAll(".imageItem");
+      const totalImages = images.length;
+      let currentIndex = 0;
+
+      function moveImages() {
+        // 애니메이션을 통해 이미지를 이동
+        imageItems.style.transform = `translateX(-${
+          (currentIndex % totalImages) * 330 + currentIndex * 10
+        }px)`;
+
+        currentIndex++;
+        // 1초 후에 다시 이동하도록 타이머 설정
+        setTimeout(moveImages, 2000); // 2초마다 한 번씩 이동
+      }
+
+      moveImages();
+    };
   </script>
 </html>

@@ -8,14 +8,19 @@
     <title>project</title>
     <link rel="stylesheet" href="/public/css/register.css" />
     <link rel="stylesheet" href="/public/css/header.css" />
+    <!-- Editor's Style -->
+    <link
+      rel="stylesheet"
+      href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"
+    />
   </head>
-
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&display=swap");
+  </style>
   <body>
     <header>
       <div class="header_left">
-        <div onclick="move_url('main')">
-          <img src="/public/img/logo_icon.png" />
-        </div>
+        <div onclick="move_url('main')">plantplan</div>
       </div>
       <div class="header_right">
         <div class="login">
@@ -61,7 +66,8 @@
           <div class="textBox">
             <input id="userId" type="number" placeholder="유저아이디" />
             <input id="name" type="text" placeholder="이름" />
-            <input id="content" type="text" placeholder="상세내용" />
+            <!-- <input id="content" type="text" placeholder="상세내용" /> -->
+            <div id="content"></div>
             <select id="category" name="category">
               <% for (let i = 0; i < category.length; i++) { %>
               <option value="<%= category[i].id %>">
@@ -79,7 +85,7 @@
             <tr>
               <th>이미지</th>
               <th>카테고리</th>
-              <th>유저아이디</th>
+              <th>ID</th>
               <th>이름</th>
               <th>상세내용</th>
               <th>수정</th>
@@ -112,7 +118,31 @@
         </table>
       </div>
     </div>
+    <footer>
+      <div class="footer">
+        <div class="footerWrap">
+          <div id="logo" onclick="move_url('main')">plantplan</div>
+        </div>
+        <div class="footer_info">
+          <div>대표 박소현</div>
+          <div>주소 서울특별시 마포구 숭문 4길 6</div>
+          <div>사업자 등록번호 000-00-00000</div>
+          <br />
+          <div>Copyright ⓒ 2025 PLANTPLAN All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
   </body>
+  <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+  <script>
+    const editor = new toastui.Editor({
+      el: document.querySelector("#content"), // 에디터를 적용할 요소 (컨테이너)
+      height: "300px", // 에디터 영역의 높이 값 (OOOpx || auto)
+      initialEditType: "markdown", // 최초로 보여줄 에디터 타입 (markdown || wysiwyg)
+      initialValue: "내용을 입력해 주세요.", // 내용의 초기 값으로, 반드시 마크다운 문자열 형태여야 함
+      previewStyle: "vertical", // 마크다운 프리뷰 스타일 (tab || vertical)
+    });
+  </script>
 
   <script src="/public/js/register.js"></script>
 </html>

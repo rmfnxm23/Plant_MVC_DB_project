@@ -35,7 +35,7 @@ const itemsController = require("../controllers/itemsController");
 
 router.get("/", itemsController.itemsMainPage);
 
-router.get("/filter/:id");
+router.get("/filter/:categoryid", itemsController.categoryData);
 
 router.get("/register", itemsController.itemAll);
 

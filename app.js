@@ -46,6 +46,6 @@ app.listen(port, () => {
   console.log(`http://localhost:3000 / Example app listening on port ${port}`);
 });
 
-// app.get('/', (req, res) => {
-//   res.render('index');
-// })
+app.get("/", (req, res) => {
+  res.render("items/index");
+});

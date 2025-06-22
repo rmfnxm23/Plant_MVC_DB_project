@@ -5,14 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="/public/css/header.css" />
+    <link rel="stylesheet" href="/public/css/itemOne.css" />
   </head>
-
+  <style>
+    /* 로고 */
+    @import url("https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&family=Nanum+Gothic&display=swap");
+    /* 본문 */
+    @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+  </style>
   <body>
     <header>
       <div class="header_left">
-        <div onclick="move_url('main')">
-          <img src="/public/img/logo_icon.png" />
-        </div>
+        <div onclick="move_url('main')">plantplan</div>
       </div>
       <div class="header_right">
         <div class="login">
@@ -30,14 +35,40 @@
     </header>
     <div class="main">
       <% itemOne.forEach((item) => { %>
-      <img src="<%= item.url %>" />
-      <h3>아이디 : <%= item.userid %></h3>
-      <h3>이름 : <%= item.name %></h3>
-      <h3>내용 : <%= item.content %></h3>
-      <% }) %>
+      <div class="mainWrap">
+        <div class="leftImgBox">
+          <div class="imgWrap">
+            <img class="img" src="<%= item.url %>" />
+          </div>
+        </div>
+        <div class="rightContentBox">
+          <a href="/items" class="mainPage">Plantplan</a>
+          <br />
+          <br />
+          <div><h2><%= item.name %></h2></div>
+          <br />
+          <div class="content"><%= item.content %></div>
 
-      <a href="/items">뒤로가기</a>
+          <br />
+          <a href="/items" class="mainPage2">BACK</a>
+        </div>
+      </div>
+      <% }) %>
     </div>
+    <footer>
+      <div class="footer">
+        <div class="footerWrap">
+          <div id="logo" onclick="move_url('main')">plantplan</div>
+        </div>
+        <div class="footer_info">
+          <div>대표 박소현</div>
+          <div>주소 서울특별시 마포구 숭문 4길 6</div>
+          <div>사업자 등록번호 000-00-00000</div>
+          <br />
+          <div>Copyright ⓒ 2025 PLANTPLAN All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
   </body>
 
   <script>
