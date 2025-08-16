@@ -26,11 +26,16 @@ header {
   position: absolute; /* 로고를 중앙에 배치하기 위해 절대 위치 사용 */
   left: 50%; /* 부모의 50% 위치 */
   transform: translateX(-50%); /* 중앙 정렬 */
+  cursor: pointer;
 }
 
 .header img {
   width: 40px;
   height: 35px;
+  cursor: pointer;
+}
+
+.header_left div {
   cursor: pointer;
 }
 
@@ -107,6 +112,7 @@ footer {
   font-size: 45px;
   font-family: "Alumni Sans Pinstripe", serif;
   font-weight: 900;
+  cursor: pointer;
 }
 
 .footer_info {
