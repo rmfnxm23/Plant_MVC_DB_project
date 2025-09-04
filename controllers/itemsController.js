@@ -110,23 +110,25 @@ const dataUpdate = async (req, res) => {
     // userid 중복 검사
     const userIdData = await itemsModel.userIdOne(userid);
     console.log(userIdData);
-    if (userIdData.length === 0) {
-      const upData = await itemsModel.updateRow({
-        id,
-        userid,
-        name,
-        content,
-        url,
-        category,
-      });
 
-      res.status(200).send({ upData });
-    } else {
-      res.status(201).send("데이터 중복");
+    // userIdData가 존재하고, 그 id가 수정 대상 id와 다르면 → 중복
+    if (userIdData.length > 0 && userIdData[0].id !== Number(id)) {
+      return res.status(409).send("유저ID 중복");
     }
+
+    const upData = await itemsModel.updateRow({
+      id,
+      userid,
+      name,
+      content,
+      url,
+      category,
+    });
+
+    res.status(200).send({ upData });
   } catch (error) {
     console.error(error);
-    res.status(500).send("데이터 등록 실패");
+    res.status(500).send("데이터 수정 실패");
   }
 };
 // 잘못된 경로

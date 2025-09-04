@@ -138,6 +138,10 @@ tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
+.detail {
+  text-align: start;
+}
+
 /* td 이미지크기설정 */
 .tableImg {
   width: 100px;
@@ -153,6 +157,7 @@ button {
   cursor: pointer;
   font-size: 14px;
   transition: background-color 0.3s ease;
+  min-width: max-content;
 }
 
 button:hover {

@@ -91,7 +91,7 @@ button:hover {
 a {
   display: block;
   text-align: center;
-  margin-top: 20px;
+  margin: 20px 0;
   font-size: 16px;
   color: #decef6;
   text-decoration: none;

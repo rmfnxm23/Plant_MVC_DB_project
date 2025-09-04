@@ -54,6 +54,12 @@ const createData = () => {
 
   console.log(file, "112");
 
+  // 유효성 검사
+  if (!userId || !names || !contents || !category || !file) {
+    alert("모든 항목을 입력하세요.");
+    return;
+  }
+
   const formData = new FormData();
   formData.append("userid", userId);
   formData.append("name", names);

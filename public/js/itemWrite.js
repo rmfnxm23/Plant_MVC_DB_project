@@ -5,19 +5,37 @@ const updateForm = (id, event) => {
   const form = document.forms["updateData"];
   //   console.log(form["name"].value, "111111111111");
 
+  const userId = form["userId"].value.trim();
+  const name = form["name"].value.trim();
+  const contents = editor.getMarkdown().trim();
+  const category = form["category"].value;
+  const file = form["url"].files[0];
+
+  // 필수 항목 체크
+  if (!userId) {
+    alert("유저아이디를 입력해주세요.");
+    return;
+  }
+  if (!name) {
+    alert("이름을 입력해주세요.");
+    return;
+  }
+  if (!contents) {
+    alert("내용을 입력해주세요.");
+    return;
+  }
+  if (!category) {
+    alert("카테고리를 선택해주세요.");
+    return;
+  }
+
   const data = new FormData();
   // console.log("id:" + id);
   data.append("id", id);
   data.append("userid", form["userId"].value);
   data.append("name", form["name"].value);
-
-  // Toast UI Editor에서 content 값을 가져옴
-  const contents = editor.getMarkdown();
   data.append("content", contents);
-
   data.append("category", form["category"].value);
-
-  const file = form["url"].files[0];
 
   if (file) {
     data.append("url", file);
@@ -38,20 +56,19 @@ const updateForm = (id, event) => {
     },
   })
     .then((res) => {
-      console.log(res, "dddd");
       if (res.status === 200) {
         alert("수정 성공");
         // window.location.reload();
         window.location.href = "/items/register"; //수정완료 시 아이템 등록페이지로 자동 이동
-      } else if (res.status === 201) {
-        alert("유저ID 중복");
-      } else {
-        alert("오류");
       }
     })
     .catch((e) => {
-      console.log(e);
-      alert("error");
+      if (e.response?.status === 409) {
+        alert("유저ID 중복");
+      } else {
+        console.error(e);
+        alert("수정 중 오류 발생");
+      }
     });
 };
 
