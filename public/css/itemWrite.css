@@ -61,6 +61,20 @@ div select {
   margin-top: 5px;
 }
 
+#content {
+  margin-top: 5px;
+}
+
+div input:focus {
+  outline: none;
+  border-color: #decef6;
+}
+
+.label {
+  display: inline-block;
+  margin-left: 2px;
+}
+
 select {
   background-color: #fff;
   color: #333;
