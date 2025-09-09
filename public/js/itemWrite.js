@@ -1,3 +1,9 @@
+const move_url = (type) => {
+  if (type === "main") {
+    window.location.href = "http://localhost:3000/items";
+  }
+};
+
 const updateForm = (id, event) => {
   event.preventDefault(); // 기본 동작을 막음 (예: 폼 제출, 링크 이동 등) //
 
