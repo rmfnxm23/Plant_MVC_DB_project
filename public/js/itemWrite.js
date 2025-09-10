@@ -4,6 +4,10 @@ const move_url = (type) => {
   }
 };
 
+const alert_show = () => {
+  alert("준비중입니다");
+};
+
 const updateForm = (id, event) => {
   event.preventDefault(); // 기본 동작을 막음 (예: 폼 제출, 링크 이동 등) //
 

@@ -1,3 +1,13 @@
+const move_url = (type) => {
+  if (type === "main") {
+    window.location.href = "http://localhost:3000/items";
+  }
+};
+
+const alert_show = () => {
+  alert("준비중입니다");
+};
+
 function categoryItem(categoryid) {
   // 버튼 클릭 시, 해당 카테고리 ID를 서버로 전송
   axios({
